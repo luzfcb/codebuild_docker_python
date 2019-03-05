@@ -1,0 +1,14 @@
+# Local development dependencies go here
+-r test.txt
+
+django-silk==3.0.1
+ipdb==0.11
+Sphinx==1.8.1
+Werkzeug==0.14.1
+sphinx-rtd-theme==0.4.2
+numpydoc==0.8.0
+django-debug-toolbar==1.10.1
+ipython==7.1.1
+m2r==0.2.1
+pygraphviz==1.5
+pydotplus==2.0.2

@@ -1,0 +1,9 @@
+# Pro-tip: Try not to put anything here. Avoid dependencies in
+#	production that aren't in development.
+-r base.txt
+
+aws-xray-sdk==2.2.0
+bc-lambda==0.2.5
+boto3==1.9.38
+Collectfast==0.6.2
+django-storages==1.7.1
