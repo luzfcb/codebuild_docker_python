@@ -15,10 +15,8 @@ phases:
     commands:
       - which docker || echo "docker not found"
       - python3 -V
-      - cat /usr/local/bin/dockerd-entrypoint.sh
-      # - nohup su root -c "sh /usr/local/bin/dockerd-entrypoint.sh"
-      #- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
-      - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - apt-get update -qq
+      - apt-get install -qq -y mysql-client
       - docker network create gen3-api-layer
       - echo "Start MySQL docker container"
       - docker-compose up -d db
@@ -30,7 +28,8 @@ phases:
   build:
     commands:
       # - echo "$CODEBUILD_INITIATOR" | grep GitHub && flake8 | lintly --log || true
-      - python manage.py wait_until_database_ready
+      - #python manage.py wait_until_database_ready
+      - mysql -udocker -pdocker -h localhost -Ddocker -e 'SELECT 1'
       - pytest --cache-clear
   post_build:
     commands:

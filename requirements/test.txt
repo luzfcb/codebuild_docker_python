@@ -3,13 +3,10 @@
 
 coverage==4.5.1
 dj-inmemorystorage==1.4.1
-django-test-plus==1.1.1
 django-test-without-migrations==0.6
 flake8==3.6.0
 pytest==3.10.0
 pytest-django==3.4.3
-# disable pytest-sugar, because is incompatible with pytest==3.10
-# re-enable when https://github.com/Frozenball/pytest-sugar/pull/160 get merged
-# pytest-sugar==0.9.1
+
 pytest-cov==2.6.0
-responses==0.10.2
+
