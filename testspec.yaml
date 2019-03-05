@@ -6,7 +6,8 @@ env:
     REPOSITORY_URI: "mock"
     IMAGE_TAG: "mock"
     CODEBUILD_RESOLVED_SOURCE_VERSION: "mock"
-    DATABASE_URL: "mysql://docker:docker@localhost:16603/docker?atomic_requests=1&init_command=SET sql_mode='STRICT_TRANS_TABLES'"
+    #DATABASE_URL: "mysql://docker:docker@localhost:16603/docker?atomic_requests=1&init_command=SET sql_mode='STRICT_TRANS_TABLES'"
+    DATABASE_URL: "mysql://docker:docker@localhost:3306/docker?atomic_requests=1&init_command=SET sql_mode='STRICT_TRANS_TABLES'"
 
 
 phases:
@@ -19,7 +20,8 @@ phases:
       #- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
       - echo "Start MySQL docker container"
-      - docker run --detach --name=test-mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker --publish 16603:3306 mysql:5.6
+      - docker-compose up -d db
+      #- docker run --detach --name=test-mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker --publish 16603:3306 mysql:5.6
       - pip install --upgrade pip awscli
       - pip install -r requirements/test.txt
       - pip install -r requirements/build.txt
