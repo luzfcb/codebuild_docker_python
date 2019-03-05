@@ -19,6 +19,7 @@ phases:
       # - nohup su root -c "sh /usr/local/bin/dockerd-entrypoint.sh"
       #- nohup /usr/local/bin/dockerd --host=unix:///var/run/docker.sock --host=tcp://127.0.0.1:2375 --storage-driver=overlay2&
       - timeout 15 sh -c "until docker info; do echo .; sleep 1; done"
+      - docker network create gen3-api-layer
       - echo "Start MySQL docker container"
       - docker-compose up -d db
       #- docker run --detach --name=test-mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker --publish 16603:3306 mysql:5.6
