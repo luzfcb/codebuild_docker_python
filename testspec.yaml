@@ -14,18 +14,7 @@ phases:
   install:
     run-as: root
     commands:
-      - which docker || echo "docker not found"
-      - python3 -V
-      - apt-get update -qq
-      - apt-get install -qq -y mysql-client
-      - /usr/local/bin/dockerd-entrypoint.sh
-      - docker network create gen3-api-layer
-      - echo "Start MySQL docker container"
       - docker-compose up -d db
-      #- docker run --detach --name=test-mysql -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_DATABASE=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker --publish 16603:3306 mysql:5.6
-      - pip install --upgrade pip awscli
-      - pip install -r requirements/test.txt
-      - pip install -r requirements/build.txt
 
   build:
     commands:
