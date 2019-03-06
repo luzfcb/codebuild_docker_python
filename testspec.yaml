@@ -13,6 +13,7 @@ env:
 phases:
   install:
     commands:
+      - nohup su root -c "sh /usr/local/bin/dockerd-entrypoint.sh"
       - docker-compose up -d db
 
   build:
